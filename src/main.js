@@ -3,8 +3,9 @@ import App from './App.vue'
 import vuetify from './plugins/vuetify';
 import VueRouter from "vue-router";
 import FragmentDetails from "@/components/FragmentDetails";
+import StarRating from 'vue-star-rating';
 Vue.config.productionTip = false;
-
+Vue.component('star-rating', StarRating);
 // 2. Define some routes
 // Each route should map to a component. The "component" can
 // either be an actual component constructor created via

@@ -32,6 +32,7 @@
                             :birth="movie.birth"
                             :genre="movie.genre"
                             :language="movie.language"
+                            :rating="movie.rating"
                             @deleted="handleDelete"
                             @modified="handleModification"
                             :id="movie.id">

@@ -28,11 +28,10 @@
                 {{ editedProps.plot }}
             </v-card-text>
             <v-card-actions class="card-actions">
+                <star-rating v-model="ratingForEdit" class="rating" :star-size="25">
+                </star-rating>
                 <v-spacer>
                 </v-spacer>
-                <v-btn icon>
-                    <v-icon>mdi-star</v-icon>
-                </v-btn>
                 <v-btn icon>
                     <v-icon @click="showingEdit = true">mdi-pencil</v-icon>
                 </v-btn>
@@ -66,6 +65,7 @@
                     genre: this.genre,
                     language: this.language,
                 },
+                ratingForEdit: this.rating ?? 0,
             }
         },
         props: {
@@ -79,6 +79,16 @@
             birth: String,
             genre: String,
             language: String,
+            rating: Number,
+        },
+        watch: {
+            ratingForEdit: function() {
+                this.$emit('modified', {
+                    id: this.id,
+                    rating: this.ratingForEdit,
+                    ...this.editedProps
+                });
+            }
         },
         methods: {
             handleCloseEdit() {
@@ -96,6 +106,7 @@
                 this.editedProps.language = newMovie.language;
                 this.$emit('modified', {
                     id: this.id,
+                    rating: this.ratingForEdit,
                     ...newMovie
                 });
             },
